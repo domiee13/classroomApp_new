@@ -33,3 +33,6 @@ Route::get('/users', 'App\Http\Controllers\UserController@index')->middleware('a
 
 Route::get('/users/{user_id}','App\Http\Controllers\UserController@detailById' );
 Route::get('/messages', 'App\Http\Controllers\MessageController@index');
+
+Route::get('/challenges','App\Http\Controllers\ChallengeController@index');
+Route::get('/assignments','App\Http\Controllers\AssignmentController@index');
