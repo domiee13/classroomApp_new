@@ -69,7 +69,9 @@
                             </td>
                             <td>
                                 <a href="/users/{{ $user->id }}" class="btn btn-success">View details</a>
-                                {{-- <a href="/users/edit/{{ $user->id }}" class="btn btn-primary">Edit</a> --}}
+                                @if(Auth::user()->role == 0)
+                                <a href="/users/edit/{{ $user->id }}" class="btn btn-primary">Edit</a>
+                                @endif
                                 <a href="" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>

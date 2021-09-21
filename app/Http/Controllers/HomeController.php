@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Assignment;
+use App\Models\Challenge;
+use App\Models\Message;
+use Auth;
 class HomeController extends Controller
 {
     /**
@@ -24,6 +28,9 @@ class HomeController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('home', ['users' => $users]);
+        $assignments = Assignment::all();
+        $challenges = Challenge::all();
+        $messages = Message::where('id_recv', '=', Auth::id())->get();
+        return view('home', compact('users','assignments','challenges','messages'));
     }
 }
