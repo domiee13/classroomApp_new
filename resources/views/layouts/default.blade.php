@@ -136,7 +136,7 @@
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active" aria-current="page">
+                    <a href="/home" class="nav-link text-white {{ Request::path() ==  'home' ? 'active' : ''  }}" aria-current="page">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#home" />
                         </svg>
@@ -144,7 +144,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/users" class="nav-link text-white">
+                    <a href="/users" class="nav-link text-white {{ Request::path() ==  'users' ? 'active' : ''  }}">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#people-circle" />
                         </svg>
@@ -152,7 +152,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/messages" class="nav-link text-white">
+                    <a href="/messages" class="nav-link text-white {{ Request::path() ==  'messages' ? 'active' : ''  }}">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#chat-quote-fill" />
                         </svg>
@@ -160,7 +160,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/assignments" class="nav-link text-white">
+                    <a href="/assignments" class="nav-link text-white {{ Request::path() ==  'assignments' ? 'active' : ''  }}">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#table" />
                         </svg>
@@ -168,7 +168,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/challenges" class="nav-link text-white">
+                    <a href="/challenges" class="nav-link text-white {{ Request::path() ==  'challenges' ? 'active' : ''  }}">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#grid" />
                         </svg>
