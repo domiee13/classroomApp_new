@@ -52,10 +52,10 @@
                                 {{ $user->username }}
                             </td>
                             <td>
-                                {{ $user->fullname }}
+                                {{ $user->name }}
                             </td>
                             <td>
-                                {{ $user->phonenumber }}
+                                {{ $user->phone }}
                             </td>
                             <td>
                                 {{ $user->email }}
