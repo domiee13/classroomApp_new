@@ -1,13 +1,13 @@
 <!-- View user's profile and send message  -->
-@extends('layouts.app')
+@extends('layouts.default')
 
 @section('title')
-    {{ $user->fullname }}'s profile
+    {{ $user->name }}'s profile
 @endsection
 
 @section('content')
     <hr>
-    <h1>{{ $user->fullname }}</h1>
+    <h1>{{ $user->name }}</h1>
 
     <nav class="mt-3">
         <div class="nav nav-tabs " id="nav-tab" role="tablist">
@@ -29,7 +29,7 @@
                                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
                                     class="rounded-circle border border-second border-2" width="150">
                                 <div class="mt-3">
-                                    <h4>{{$user->fullname}}</h4>
+                                    <h4>{{$user->name}}</h4>
                                     <p class="text-secondary mb-1">Student</p>
                                     {{-- <p class="text-muted font-size-sm">Lorem</p> --}}
                                     {{-- <button class="btn btn-primary">Follow</button>
@@ -58,7 +58,7 @@
                                     <h6 class="mb-0">Full Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-dark">
-                                    {{$user->fullname}}
+                                    {{$user->name}}
                                 </div>
                             </div>
                             <hr>
@@ -76,7 +76,7 @@
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
                                 <div class="col-sm-9 text-dark">
-                                    {{$user->phonenumber}}
+                                    {{$user->phone}}
                                 </div>
                             </div>
                             

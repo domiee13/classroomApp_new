@@ -36,3 +36,9 @@ Route::get('/messages', 'App\Http\Controllers\MessageController@index');
 
 Route::get('/challenges','App\Http\Controllers\ChallengeController@index');
 Route::get('/assignments','App\Http\Controllers\AssignmentController@index');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/users', 'App\Http\Controllers\UserController@index');
+    Route::get('/messages', 'App\Http\Controllers\MessageController@index');
+    Route::get('/users/{user_id}','App\Http\Controllers\UserController@detailById' );
+});
