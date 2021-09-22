@@ -19,6 +19,9 @@ class Admin
         if(Auth::check() && Auth::user()->isAdmin()){
             return $next($request);
         }
-        return redirect('/login');
+        else{
+            Auth::logout();
+            return redirect('/login')->with('error', "Action denied, you are not admin");
+        }
     }
 }

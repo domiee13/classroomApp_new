@@ -88,10 +88,15 @@
             </div>
         </div>
         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-            <form action="">
+            <form method="POST" action="/users/{{$user->id}}">
+                @csrf
                 <div class="form-group">
                     <label for="messageContent">Message</label>
-                    <textarea class="form-control" name="" id="messageContent" cols="30" rows="10"></textarea>
+                    <input class="d-none" type="text" name="id_recv" value="{{$user->id}}" id="">
+                    <input class="d-none" type="text" name="id_send" value="{{Auth::user()->id}}" id="">
+                    {{-- <input class="d-none" type="text" name="time_send" value="{{now()->toDateTimeString('hh:mm::ss YY-mm-dd') }}" id=""> --}}
+                    <input class="d-none" type="text" name="name_send" value="{{Auth::user()->name}}" id="">
+                    <textarea class="form-control" name="content" id="messageContent" cols="30" rows="10"></textarea>
                     <button class="btn btn-success mt-2" type="submit">Send</button>
                 </div>
 

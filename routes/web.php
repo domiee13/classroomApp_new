@@ -41,9 +41,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users', 'App\Http\Controllers\UserController@index');
     Route::get('/messages', 'App\Http\Controllers\MessageController@index');
     Route::get('/users/{user_id}','App\Http\Controllers\UserController@detailById' );
-});
-
-Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/challenges','App\Http\Controllers\ChallengeController@index');
     Route::get('/assignments','App\Http\Controllers\AssignmentController@index');
 });
+
+// Route::middleware(['auth', 'admin'])->group(function () {
+//     Route::get('/challenges','App\Http\Controllers\ChallengeController@index');
+//     Route::get('/assignments','App\Http\Controllers\AssignmentController@index');
+// });
+
+Route::post('/users/{id}', 'App\Http\Controllers\UserController@sendMsg');
+
+// Route::post('/test', function(){
+//     dd("Post detected");
+// });
