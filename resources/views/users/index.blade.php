@@ -8,7 +8,8 @@
     <!-- <div class="row"> -->
     <div class="d-flex justify-content-between">
         <h1>Users</h1>
-        <a href="/users/create" class="btn btn-success d-inline-block h-25 align-self-center @if(!Auth::user()->isAdmin()) d-none @endif">Add</a>
+        <a href="/users/create"
+            class="btn btn-success d-inline-block h-25 align-self-center @if (!Auth::user()->isAdmin()) d-none @endif">Add</a>
     </div>
 
     <!-- </div> -->
@@ -43,7 +44,6 @@
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
-                        <!-- {{ $user }} -->
                         <tr>
                             <td>
                                 {{ $user->id }}
@@ -69,11 +69,51 @@
                             </td>
                             <td>
                                 <a href="/users/{{ $user->id }}" class="btn btn-success">View details</a>
-                                @if(Auth::user()->role == 0)
-                                <a href="/users/edit/{{ $user->id }}" class="btn btn-primary">Edit</a>
+                                {{-- Check, only admin can edit --}}
+                                @if (Auth::user()->role == 0)
+                                    <a href="/users/edit/{{ $user->id }}" class="btn btn-primary">Edit</a>
                                 @endif
-                                <a href="" class="btn btn-danger">Delete</a>
+
+                                {{-- Delete button with user account --}}
+                                @if ($user->role == 1)
+                                    <button class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal ">Delete {{ $user->id }}</button>
+                                @endif
+
                             </td>
+                    
+                    <!-- Delete confirm modal -->
+                   
+                            {{-- {{$users}} --}}
+                        {{-- {{ $user->id }} --}}
+                        <form action="/users/deluser/{{ $user->id }}" method="POST">
+                            @csrf
+
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <input class="" type=" text" name="id_user" value="{{ $user->id }}">
+
+
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Confirm delete
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete this user?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         </tr>
                     @endforeach
 

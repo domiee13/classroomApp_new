@@ -98,4 +98,9 @@ class UserController extends Controller
     public function postEditUser(){
         return view('users.edit');
     }
+    public function deleteUser(Request $request){
+        dd($request->all());
+        $user = User::find($request->id_user)->delete();
+        return redirect()->back();
+    }
 }
