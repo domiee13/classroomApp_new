@@ -25,6 +25,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/users/create', function(){
+    return view('users.create');
+});
+
+
+// Route::post('/users/{id}', 'App\Http\Controllers\UserController@sendMsg');
+
+Route::post('/users/create', 'App\Http\Controllers\UserController@createUser');
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -38,11 +48,13 @@ Route::get('/messages', 'App\Http\Controllers\MessageController@index');
 // Route::get('/assignments','App\Http\Controllers\AssignmentController@index');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/users', 'App\Http\Controllers\UserController@index');
+    
+    Route::get('/users', 'App\Http\Controllers\UserController@index')->name('users');
     Route::get('/messages', 'App\Http\Controllers\MessageController@index');
     Route::get('/users/{user_id}','App\Http\Controllers\UserController@detailById' );
     Route::get('/challenges','App\Http\Controllers\ChallengeController@index');
     Route::get('/assignments','App\Http\Controllers\AssignmentController@index');
+    
 });
 
 // Route::middleware(['auth', 'admin'])->group(function () {
@@ -50,7 +62,7 @@ Route::middleware(['auth'])->group(function () {
 //     Route::get('/assignments','App\Http\Controllers\AssignmentController@index');
 // });
 
-Route::post('/users/{id}', 'App\Http\Controllers\UserController@sendMsg');
+// Route::post('/users/{id}', 'App\Http\Controllers\UserController@sendMsg');
 
 // Route::post('/test', function(){
 //     dd("Post detected");

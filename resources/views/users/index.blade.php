@@ -8,7 +8,7 @@
     <!-- <div class="row"> -->
     <div class="d-flex justify-content-between">
         <h1>Users</h1>
-        <a href="" class="btn btn-success d-inline-block h-25 align-self-center">Add</a>
+        <a href="/users/create" class="btn btn-success d-inline-block h-25 align-self-center @if(!Auth::user()->isAdmin()) d-none @endif">Add</a>
     </div>
 
     <!-- </div> -->

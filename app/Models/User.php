@@ -18,11 +18,15 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $table = 'users';
-
+    public $timestamps = false;
     protected $fillable = [
+        
         'name',
+        'username',
         'email',
         'password',
+        'phone',
+        'role'
     ];
 
     /**
@@ -40,9 +44,9 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    // ];
 
     public function isAdmin(){
         return $this->role == 0;
