@@ -77,7 +77,7 @@
                                 {{-- Delete button with user account --}}
                                 @if ($user->role == 1)
                                     <button class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal ">Delete {{ $user->id }}</button>
+                                        data-bs-target="#exampleModal{{$user->id}} ">Delete {{ $user->id }}</button>
                                 @endif
 
                             </td>
@@ -89,7 +89,7 @@
                         <form action="/users/deluser/{{ $user->id }}" method="POST">
                             @csrf
 
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            <div class="modal fade" id="exampleModal{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel {{$user->id}}"
                                 aria-hidden="true">
                                 <input class="" type=" text" name="id_user" value="{{ $user->id }}">
 
@@ -97,7 +97,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Confirm delete
+                                            <h5 class="modal-title" id="exampleModalLabel{{$user->id}}">Confirm delete
                                             </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>

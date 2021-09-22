@@ -14,7 +14,7 @@ class MessageController extends Controller
     }
 
     function deleteMsg(Request $request){
-        // dd(Message::find($request->id_msg));
+        dd($request->id_msg);
         $message = Message::find($request->id_msg);
         $message->delete();
         return redirect()->back();

@@ -130,13 +130,13 @@
                                         <button class="btn btn-success">Edit</button>
                                         <!-- Button trigger delete confirm modal -->
                                         <button class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">Delete</button>
+                                            data-bs-target="#exampleModal{{$item->id}}">Delete</button>
 
                                     </td>
                                     <!-- Delete Modal -->
                                     <form action="/users/delmsg/{{$item->id}}" method="POST">
                                         @csrf
-                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        <div class="modal fade" id="exampleModal{{$item->id}}" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <input class="d-none" type="text" name="id_msg" value="{{$item->id}}">
                                             <div class="modal-dialog">
