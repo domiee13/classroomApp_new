@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Message;
 use Auth;
+use Hash;
 use Carbon\Carbon;
 class UserController extends Controller
 {
@@ -59,5 +60,31 @@ class UserController extends Controller
             return redirect('users');
         }
        
+    }
+
+    public function profile(){
+        return view('users.profile');
+    }
+
+    public function editProfile(Request $request){
+        // dd($request->all(),Auth::user()->password, bcrypt($request->oldpassword));
+        $user = User::find(Auth::id());
+        //Check old password 
+        if(Hash::check($request->oldpassword, $user->password) && 
+            $request->password == $request->password_confirmation){
+            $user->update([
+                'name' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'password' => bcrypt($request->password),
+                'role' => 1
+            ]);
+            Auth::logout();
+            return redirect('/login');
+        }
+        else{
+            return redirect('/profile')->with('error', 'Invalid information');
+        }
     }
 }

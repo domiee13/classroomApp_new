@@ -53,6 +53,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/{user_id}','App\Http\Controllers\UserController@detailById' );
     Route::get('/challenges','App\Http\Controllers\ChallengeController@index');
     Route::get('/assignments','App\Http\Controllers\AssignmentController@index');
+    Route::get('/profile', 'App\Http\Controllers\UserController@profile');
+    Route::post('/profile', 'App\Http\Controllers\UserController@editProfile');
     
 });
 
