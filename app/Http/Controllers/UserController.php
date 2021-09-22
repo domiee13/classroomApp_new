@@ -17,7 +17,7 @@ class UserController extends Controller
     public function detailById($id){
         $user = User::find($id);
         // echo gettype($user);     
-        $messages = Message::where('id_recv','=',$id)->get();
+        $messages = Message::where('id_recv','=',$id)->where('id_send','=',Auth::id())->get();
         // echo $messages;
         return view('users.detail',['user' => $user, 'messages' => $messages]);
     }

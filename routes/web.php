@@ -30,7 +30,6 @@ Route::get('/users/create', function(){
 });
 
 
-// Route::post('/users/{id}', 'App\Http\Controllers\UserController@sendMsg');
 
 Route::post('/users/create', 'App\Http\Controllers\UserController@createUser');
 
@@ -62,7 +61,7 @@ Route::middleware(['auth'])->group(function () {
 //     Route::get('/assignments','App\Http\Controllers\AssignmentController@index');
 // });
 
-// Route::post('/users/{id}', 'App\Http\Controllers\UserController@sendMsg');
+Route::post('/users/{id}', 'App\Http\Controllers\UserController@sendMsg');
 
 // Route::post('/test', function(){
 //     dd("Post detected");
