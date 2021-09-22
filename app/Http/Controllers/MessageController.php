@@ -12,4 +12,11 @@ class MessageController extends Controller
         $messages = Message::where('id_recv','=',Auth::id())->get();
         return view('messages.index',compact('messages', $messages));
     }
+
+    function deleteMsg(Request $request){
+        // dd(Message::find($request->id_msg));
+        $message = Message::find($request->id_msg);
+        $message->delete();
+        return redirect()->back();
+    }
 }

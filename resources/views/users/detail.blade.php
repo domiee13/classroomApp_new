@@ -29,7 +29,7 @@
                                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
                                     class="rounded-circle border border-second border-2" width="150">
                                 <div class="mt-3">
-                                    <h4>{{$user->name}}</h4>
+                                    <h4>{{ $user->name }}</h4>
                                     <p class="text-secondary mb-1">Student</p>
                                     {{-- <p class="text-muted font-size-sm">Lorem</p> --}}
                                     {{-- <button class="btn btn-primary">Follow</button>
@@ -40,7 +40,7 @@
                     </div>
 
                 </div>
-                {{-- User's info  --}}
+                {{-- User's info --}}
                 <div class="col-md-8">
                     <div class="card mb-3">
                         <div class="card-body">
@@ -49,7 +49,7 @@
                                     <h6 class="mb-0">Username</h6>
                                 </div>
                                 <div class="col-sm-9 text-dark">
-                                    {{$user->username}}
+                                    {{ $user->username }}
                                 </div>
                             </div>
                             <hr>
@@ -58,7 +58,7 @@
                                     <h6 class="mb-0">Full Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-dark">
-                                    {{$user->name}}
+                                    {{ $user->name }}
                                 </div>
                             </div>
                             <hr>
@@ -67,7 +67,7 @@
                                     <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-dark">
-                                    {{$user->email}}
+                                    {{ $user->email }}
                                 </div>
                             </div>
                             <hr>
@@ -76,10 +76,10 @@
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
                                 <div class="col-sm-9 text-dark">
-                                    {{$user->phone}}
+                                    {{ $user->phone }}
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -88,14 +88,14 @@
             </div>
         </div>
         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-            <form method="POST" action="/users/{{$user->id}}">
+            <form method="POST" action="/users/{{ $user->id }}">
                 @csrf
                 <div class="form-group">
                     <label for="messageContent">Message</label>
-                    <input class="d-none" type="text" name="id_recv" value="{{$user->id}}" id="">
-                    <input class="d-none" type="text" name="id_send" value="{{Auth::user()->id}}" id="">
+                    <input class="d-none" type="text" name="id_recv" value="{{ $user->id }}" id="">
+                    <input class="d-none" type="text" name="id_send" value="{{ Auth::user()->id }}" id="">
                     {{-- <input class="d-none" type="text" name="time_send" value="{{now()->toDateTimeString('hh:mm::ss YY-mm-dd') }}" id=""> --}}
-                    <input class="d-none" type="text" name="name_send" value="{{Auth::user()->name}}" id="">
+                    <input class="d-none" type="text" name="name_send" value="{{ Auth::user()->name }}" id="">
                     <textarea class="form-control" name="content" id="messageContent" cols="30" rows="10"></textarea>
                     <button class="btn btn-success mt-2" type="submit">Send</button>
                 </div>
@@ -107,9 +107,9 @@
                 <div class="card-header">
                     <h3>Sent Messages</h3>
                 </div>
-              
+
                 <div class="col-md-3 my-3 ms-3">
-                    
+
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered ">
@@ -117,29 +117,60 @@
                             <tr>
                                 <th scope="col">Time</th>
                                 <th scope="col">Content</th>
-                                {{-- <th scope="col"></th> --}}
+                                <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                          @foreach ($messages as $item)
-                          <tr>
-                            {{-- <th scope="row">{{$item->id}}</th> --}}
-                            <td>{{$item->time_send}}</td>
-                            <td>{{$item->content}}</td>
-                            {{-- <td>
-                                <button class="btn btn-success">Detail</button>
-                                <button class="btn btn-danger">Delete</button>
-                            </td> --}}
-                            {{-- <td>{{$item->name_send}}</td> --}}
-                        </tr>
-                          @endforeach
-                           
-              
+                            @foreach ($messages as $item)
+                                <tr>
+                                    {{-- <th scope="row">{{$item->id}}</th> --}}
+                                    <td>{{ $item->time_send }}</td>
+                                    <td>{{ $item->content }}</td>
+                                    <td>
+                                        <button class="btn btn-success">Edit</button>
+                                        <!-- Button trigger delete confirm modal -->
+                                        <button class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">Delete</button>
+
+                                    </td>
+                                    <!-- Delete Modal -->
+                                    <form action="/users/delmsg/{{$item->id}}" method="POST">
+                                        @csrf
+                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <input class="d-none" type="text" name="id_msg" value="{{$item->id}}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Confirm delete
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Cancle</button>
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    {{-- <td>{{$item->name_send}}</td> --}}
+                                </tr>
+                            @endforeach
+
+
                         </tbody>
                     </table>
                 </div>
-                
-              </div>
+
+
+
+            </div>
         </div>
     </div>
     </div>
