@@ -40,7 +40,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Route::get('/users', 'App\Http\Controllers\UserController@index')->middleware('auth');
 
-Route::get('/users/{user_id}','App\Http\Controllers\UserController@detailById' );
+// Route::get('/users/{user_id}','App\Http\Controllers\UserController@detailById' );
 Route::get('/messages', 'App\Http\Controllers\MessageController@index');
 
 // Route::get('/challenges','App\Http\Controllers\ChallengeController@index');
@@ -51,10 +51,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users', 'App\Http\Controllers\UserController@index')->name('users');
     Route::get('/messages', 'App\Http\Controllers\MessageController@index');
     Route::get('/users/{user_id}','App\Http\Controllers\UserController@detailById' );
+    Route::post('/users/{id}', 'App\Http\Controllers\UserController@sendMsg');
     Route::get('/challenges','App\Http\Controllers\ChallengeController@index');
     Route::get('/assignments','App\Http\Controllers\AssignmentController@index');
     Route::get('/profile', 'App\Http\Controllers\UserController@profile');
     Route::post('/profile', 'App\Http\Controllers\UserController@editProfile');
+    Route::get('/users/edit/{id}', 'App\Http\Controllers\UserController@getEditUser');
+
     
 });
 
@@ -63,7 +66,6 @@ Route::middleware(['auth'])->group(function () {
 //     Route::get('/assignments','App\Http\Controllers\AssignmentController@index');
 // });
 
-Route::post('/users/{id}', 'App\Http\Controllers\UserController@sendMsg');
 
 // Route::post('/test', function(){
 //     dd("Post detected");

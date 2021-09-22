@@ -1,57 +1,113 @@
-<!-- View user's profile and send message  -->
-@extends('layouts.app')
+@extends('layouts.default')
 
 @section('title')
-Edit user
+    Edit user
 @endsection
 
 @section('content')
-<hr>
-<h1>{{$user->fullname}}</h1>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+      <div class="col-md-8">
+          <div class="card">
+              <div class="card-header">{{ __('Edit profile') }}</div>
+              @if(Session::get('error'))
+              <div class="alert alert-danger" role="alert">
+                {{Session::get('error')}}
+              </div>
+              @endif
+              <div class="card-body">
+                  <form method="POST" action="/profile">
+                      @csrf
 
-<nav class="mt-3">
-    <div class="nav nav-tabs " id="nav-tab" role="tablist">
-        <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">Profile</button>
-        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
-        <button class="nav-link" id="nav-sent-tab" data-bs-toggle="tab" data-bs-target="#nav-sent" type="button" role="tab" aria-controls="nav-sent" aria-selected="false">Sent</button>
-    </div>
-</nav>
-<div class="tab-content mt-4" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3">
-                </div>
-                <div class="col-md-6">
-                    <div class="mb-3 row">
-                        <label for="fullname" class="col-sm-2 col-form-label">Fullname</label>
-                        <div class="col-sm-10">
-                            <input type="text" readonly disabled class="form-control" id="fullname" value="{{$user->fullname}}">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-        <form action="">
-            <div class="form-group">
-                <label for="messageContent">Message</label>
-                <textarea class="form-control" name="" id="messageContent" cols="30" rows="10"></textarea>
-                <button class="btn btn-success mt-2" type="submit">Send</button>
-            </div>
+                      <div class="form-group row mt-2">
+                          <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
-        </form>
-    </div>
-    <div class="tab-pane fade" id="nav-sent" role="tabpanel" aria-labelledby="nav-sent-tab">Sent</div>
-</div>
+                          <div class="col-md-6">
+                              <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$user->name}}" >
+
+                              @error('name')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                          </div>
+                      </div>
+                      <div class="form-group row mt-2">
+                          <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+
+                          <div class="col-md-6">
+                              <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{$user->username}}" >
+
+                              @error('username')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                          </div>
+                      </div>
+
+                      <div class="form-group row mt-2">
+                          <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                          <div class="col-md-6">
+                              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$user->email}}" required autocomplete="email">
+
+                              @error('email')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                          </div>
+                      </div>
+                      
+                      <div class="form-group row mt-2">
+                          <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone number') }}</label>
+
+                          <div class="col-md-6">
+                              <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{$user->phone}}" required autocomplete="phone">
+
+                              @error('phone')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                          </div>
+                      </div>
+
+                      
+                      <div class="form-group row mt-2">
+                          <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('New Password') }}</label>
+
+                          <div class="col-md-6">
+                              <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                              @error('password')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                          </div>
+                      </div>
+
+                      <div class="form-group row mt-2">
+                          <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm New Password') }}</label>
+
+                          <div class="col-md-6">
+                              <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                          </div>
+                      </div>
+
+                      <div class="form-group row mb-0 mt-2">
+                          <div class="col-md-6 offset-md-4">
+                              <button type="submit" class="btn btn-success">
+                                  {{ __('Save') }}
+                              </button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 @endsection

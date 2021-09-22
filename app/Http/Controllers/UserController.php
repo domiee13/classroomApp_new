@@ -62,10 +62,12 @@ class UserController extends Controller
        
     }
 
+    // Show profile 
     public function profile(){
         return view('users.profile');
     }
 
+    //user's edit profile function
     public function editProfile(Request $request){
         // dd($request->all(),Auth::user()->password, bcrypt($request->oldpassword));
         $user = User::find(Auth::id());
@@ -78,7 +80,7 @@ class UserController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'password' => bcrypt($request->password),
-                'role' => 1
+                'role' => $user->role
             ]);
             Auth::logout();
             return redirect('/login');
@@ -86,5 +88,14 @@ class UserController extends Controller
         else{
             return redirect('/profile')->with('error', 'Invalid information');
         }
+    }
+
+    // edit user info by admin 
+    public function getEditUser($id){
+        $user = User::find($id);
+        return view('users.edit',['user' => $user]);
+    }
+    public function postEditUser(){
+        return view('users.edit');
     }
 }
