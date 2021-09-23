@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users', 'App\Http\Controllers\UserController@index')->name('users');
     Route::get('/messages', 'App\Http\Controllers\MessageController@index');
     Route::get('/users/{user_id}','App\Http\Controllers\UserController@detailById' );
-    Route::post('/users/{id}', 'App\Http\Controllers\UserController@sendMsg');
+    Route::post('/users/{id}', 'App\Http\Controllers\MessageController@sendMsg');
     Route::get('/challenges','App\Http\Controllers\ChallengeController@index');
     Route::get('/assignments','App\Http\Controllers\AssignmentController@index');
     Route::get('/profile', 'App\Http\Controllers\UserController@profile');
@@ -59,6 +59,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/edit/{id}', 'App\Http\Controllers\UserController@getEditUser');
     Route::post('/users/delmsg/{id}', 'App\Http\Controllers\MessageController@deleteMsg');
     Route::post('/users/deluser/{id}','App\Http\Controllers\UserController@deleteUser' );
+    Route::post('/users/editmsg/{id}','App\Http\Controllers\MessageController@editMsg' );
+
 });
 
 // Route::middleware(['auth', 'admin'])->group(function () {

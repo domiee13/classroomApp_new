@@ -202,7 +202,7 @@
 
         <div class="b-example-divider"></div>
 
-        <div class="container-fluid">
+        <div class="container-fluid overflow-auto">
             @yield('content')
         </div>
     </main>

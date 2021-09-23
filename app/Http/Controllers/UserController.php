@@ -99,7 +99,7 @@ class UserController extends Controller
         return view('users.edit');
     }
     public function deleteUser(Request $request){
-        dd($request->all());
+        // dd($request->all());
         $user = User::find($request->id_user)->delete();
         return redirect()->back();
     }

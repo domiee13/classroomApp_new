@@ -127,18 +127,20 @@
                                     <td>{{ $item->time_send }}</td>
                                     <td>{{ $item->content }}</td>
                                     <td>
-                                        <button class="btn btn-success">Edit</button>
+                                        <button class="btn btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#editModal{{ $item->id }}">Edit</button>
                                         <!-- Button trigger delete confirm modal -->
                                         <button class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal{{$item->id}}">Delete</button>
+                                            data-bs-target="#exampleModal{{ $item->id }}">Delete</button>
 
                                     </td>
                                     <!-- Delete Modal -->
-                                    <form action="/users/delmsg/{{$item->id}}" method="POST">
+                                    <form action="/users/delmsg/{{ $item->id }}" method="POST">
                                         @csrf
-                                        <div class="modal fade" id="exampleModal{{$item->id}}" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <input class="d-none" type="text" name="id_msg" value="{{$item->id}}">
+                                        <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <input class="d-none" type="text" name="id_msg"
+                                                value="{{ $item->id }}">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -154,6 +156,36 @@
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Cancle</button>
                                                         <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- Edit Modal -->
+                                    <form action="/users/editmsg/{{ $item->id }}" method="POST">
+                                        @csrf
+                                        <div class="modal fade" id="editModal{{ $item->id }}" tabindex="-1"
+                                            aria-labelledby="editModalLabel" aria-hidden="true">
+                                            <input class="d-none" type="text" name="id_msg"
+                                                value="{{ $item->id }}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="editModalLabel">Confirm delete
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <label for="inputContent"
+                                                            class="form-label">Content</label>
+                                                        <textarea autofocus class="form-control" id="inputContent"
+                                                            rows="3" name="content" >{{$item->content}}</textarea>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Cancle</button>
+                                                        <button type="submit" class="btn btn-success">Save</button>
                                                     </div>
                                                 </div>
                                             </div>
