@@ -51,4 +51,19 @@ class ChallengeController extends Controller
         $fileDownloadName = "chall" . $chall->id ."." . $filePath[1];
         return Storage::download($chall->filepath, $fileDownloadName);
     }
+    public function playChall($id){
+        $chall = Challenge::find($id);
+        return view('challenges.playground', compact('chall', $chall));
+    }
+
+    public function submitAnswerChall($id, Request $request){
+        // dd($id, $request->all());
+        $filepath = Challenge::find($id)->filepath;
+        $challName = explode(".", $filepath)[0];
+        $challName = explode("/", $challName)[1];
+        if($request->answer == $challName){
+            $content = Storage::get($filepath);
+            return redirect()->back()->with('true', $content);
+        }
+    }
 }

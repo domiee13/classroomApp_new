@@ -63,7 +63,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/challenges/add','App\Http\Controllers\ChallengeController@addChall' );
     Route::post('/challenges/delete','App\Http\Controllers\ChallengeController@delChall' );
     Route::get('/challenges/{id}','App\Http\Controllers\ChallengeController@downloadChall' );
-
+    Route::get('/challenges/view/{id}','App\Http\Controllers\ChallengeController@playChall' );
+    Route::post('/challenges/view/{id}','App\Http\Controllers\ChallengeController@submitAnswerChall' );
 
 });
 
