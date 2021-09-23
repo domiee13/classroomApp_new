@@ -60,6 +60,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/users/delmsg/{id}', 'App\Http\Controllers\MessageController@deleteMsg');
     Route::post('/users/deluser/{id}','App\Http\Controllers\UserController@deleteUser' );
     Route::post('/users/editmsg/{id}','App\Http\Controllers\MessageController@editMsg' );
+    Route::post('/challenges/add','App\Http\Controllers\ChallengeController@addChall' );
+    Route::post('/challenges/delete','App\Http\Controllers\ChallengeController@delChall' );
+    Route::get('/challenges/{id}','App\Http\Controllers\ChallengeController@downloadChall' );
+
 
 });
 

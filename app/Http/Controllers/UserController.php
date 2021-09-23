@@ -29,18 +29,18 @@ class UserController extends Controller
     public function getSentMsg($id_recv){
     }
 
-    public function sendMsg(Request $request){
-        // dd($request->all());
-        // dd(Carbon::now()->toDateTimeString());
-        Message::create([
-            'id_send' => $request['id_send'],
-            'id_recv' => $request['id_recv'],
-            'content' => $request['content'],
-            'time_send' => Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString(),
-            'name_send' => Auth::user()->name,
-        ]);
-        return redirect()->back();
-    }
+    // public function sendMsg(Request $request){
+    //     // dd($request->all());
+    //     // dd(Carbon::now()->toDateTimeString());
+    //     Message::create([
+    //         'id_send' => $request['id_send'],
+    //         'id_recv' => $request['id_recv'],
+    //         'content' => $request['content'],
+    //         'time_send' => Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString(),
+    //         'name_send' => Auth::user()->name,
+    //     ]);
+    //     return redirect()->back();
+    // }
 
     public function createUser(Request $request){
         // dd($request->all());

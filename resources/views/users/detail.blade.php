@@ -30,7 +30,13 @@
                                     class="rounded-circle border border-second border-2" width="150">
                                 <div class="mt-3">
                                     <h4>{{ $user->name }}</h4>
-                                    <p class="text-secondary mb-1">Student</p>
+                                    <p class="text-secondary mb-1">
+                                        @if($user->role == 1)
+                                            Student 
+                                        @else 
+                                            Teacher
+                                        @endif
+                                    </p>
                                     {{-- <p class="text-muted font-size-sm">Lorem</p> --}}
                                     {{-- <button class="btn btn-primary">Follow</button>
                                     <button class="btn btn-outline-primary">Message</button> --}}
@@ -96,7 +102,7 @@
                     <input class="d-none" type="text" name="id_send" value="{{ Auth::user()->id }}" id="">
                     {{-- <input class="d-none" type="text" name="time_send" value="{{now()->toDateTimeString('hh:mm::ss YY-mm-dd') }}" id=""> --}}
                     <input class="d-none" type="text" name="name_send" value="{{ Auth::user()->name }}" id="">
-                    <textarea class="form-control" name="content" id="messageContent" cols="30" rows="10"></textarea>
+                    <textarea class="form-control" name="content" id="messageContent" cols="30" rows="10" placeholder="Leave a message"></textarea>
                     <button class="btn btn-success mt-2" type="submit">Send</button>
                 </div>
 
