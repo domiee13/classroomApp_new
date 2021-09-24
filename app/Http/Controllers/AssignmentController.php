@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Assignment;
 use Illuminate\Http\Request;
 use Auth;
+use Carbon\Carbon;
 class AssignmentController extends Controller
 {
     //
@@ -17,6 +18,13 @@ class AssignmentController extends Controller
     }
 
     public function addAssignment(Request $request){
-        dd($request->all());
+        // dd($request->all());
+        // $request->validate([
+        //     'file' => 'mimes:txt,doc,pdf',
+        // ]);
+        $fileName = $request->file->getClientOriginalName();
+        $filePath = $request->file('file')->move('uploads', $fileName);
+        dd($fileName,$filePath);
+        dd(Carbon::parse($request->deadline)->format('Y-m-d'));
     }
 }

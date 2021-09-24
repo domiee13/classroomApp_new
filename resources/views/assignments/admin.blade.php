@@ -29,7 +29,7 @@
                   @foreach ($assignments as $item)
                   <tr>
                     <th scope="row">{{$item->id}}</th>
-                    <td>{{$item->deadline}}</td>
+                    <td>{{date('d-m-Y', strtotime($item->deadline))}}</td>
                     <td>{{$item->desc}}</td>
                     <td>
                         <button class="btn btn-success">Detail</button>
@@ -42,6 +42,15 @@
                 </tbody>
             </table>
         </div>
+        @if ($errors->any())
+        <div class="alert alert-danger mt-2 mx-2">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
         <!-- Add assignment modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog ">
@@ -51,18 +60,18 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form action="/assignments/add" method="POST">
+                      <form action="/assignments/add" method="POST" autocomplete="off" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                           <label for="datepicker">Deadline:</label>  
-                          <input class="form-control" type="text" id="datepicker" name="deadline">
+                          <input class="form-control" type="text" id="datepicker" name="deadline" required>
                           <div class="mt-2">
                             <label for="description">Description</label>
-                            <textarea class="form-control" placeholder="" id="description" name="desc"></textarea>
+                            <textarea class="form-control" placeholder="" id="description" name="desc" required></textarea>
                           </div>
                           <div class="mt-3">
                             <label for="formFile" class="form-label">File</label>
-                            <input class="form-control" type="file" id="formFile" name="file">
+                            <input class="form-control" type="file" id="formFile" name="file" required>
                           </div>
                         </div>
                     </div>
@@ -83,7 +92,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(function() {
-            $("#datepicker").datepicker({ dateFormat: 'dd/mm/yy' });
+            $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
         });
     </script>
     </script>

@@ -29,7 +29,7 @@
                   @foreach ($assignments as $item)
                   <tr>
                     <th scope="row">{{$item->id}}</th>
-                    <td>{{$item->deadline}}</td>
+                    <td>date('d-m-Y', strtotime($item->deadline));</td>
                     <td>{{$item->desc}}</td>
                     <td>
                         <button class="btn btn-success">Detail</button>
