@@ -42,7 +42,7 @@
                 </tbody>
             </table>
         </div>
-        <!-- Modal -->
+        <!-- Add assignment modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog ">
                 <div class="modal-content">
@@ -51,24 +51,24 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      {{-- Add new modal  --}}
-                      <form>
+                      <form action="/assignments/add" method="POST">
+                        @csrf
                         <div class="form-group">
                           <label for="datepicker">Deadline:</label>  
-                          <input class="form-control" type="text" id="datepicker">
+                          <input class="form-control" type="text" id="datepicker" name="deadline">
                           <div class="mt-2">
                             <label for="description">Description</label>
-                            <textarea class="form-control" placeholder="" id="description"></textarea>
+                            <textarea class="form-control" placeholder="" id="description" name="desc"></textarea>
                           </div>
                           <div class="mt-3">
                             <label for="formFile" class="form-label">File</label>
-                            <input class="form-control" type="file" id="formFile">
+                            <input class="form-control" type="file" id="formFile" name="file">
                           </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add assignment</button>
                     </div>
                   </form>
                 </div>
@@ -83,7 +83,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(function() {
-            $("#datepicker").datepicker();
+            $("#datepicker").datepicker({ dateFormat: 'dd/mm/yy' });
         });
     </script>
     </script>

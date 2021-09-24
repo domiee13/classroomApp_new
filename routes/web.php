@@ -66,6 +66,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/challenges/view/{id}','App\Http\Controllers\ChallengeController@playChall' );
     Route::post('/challenges/view/{id}','App\Http\Controllers\ChallengeController@submitAnswerChall' );
 
+    Route::post('/assignments/add','App\Http\Controllers\AssignmentController@addAssignment' );
+
 });
 
 // Route::middleware(['auth', 'admin'])->group(function () {

@@ -15,4 +15,8 @@ class AssignmentController extends Controller
         }
         return view('assignments.index',['assignments' => $assignments]);
     }
+
+    public function addAssignment(Request $request){
+        dd($request->all());
+    }
 }
