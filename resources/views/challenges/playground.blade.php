@@ -5,7 +5,8 @@
 @endsection
 
 @section('content')
-    <div class="card mt-5">
+    <a href="/challenges" class="btn btn-primary mt-3 "><i class="fas fa-chevron-left"></i> Back </a>
+    <div class="card mt-2">
         <div class="card-header">
             <h1 class="text-center">{{ $chall->name }}</h1>
         </div>
@@ -44,7 +45,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="hintModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="hintModalLabel">Hint</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
