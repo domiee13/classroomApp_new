@@ -11,9 +11,9 @@
         </div>
 
         <div class="col-md-3 my-3 ms-3">
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            {{-- <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Add <i class="fas fa-plus-square"></i>
-            </button>
+            </button> --}}
         </div>
         <div class="card-body">
             <table class="table table-bordered ">
@@ -29,11 +29,10 @@
                   @foreach ($assignments as $item)
                   <tr>
                     <th scope="row">{{$item->id}}</th>
-                    <td>date('d-m-Y', strtotime($item->deadline));</td>
+                    <td>{{date('d-m-Y', strtotime($item->deadline))}}</td>
                     <td>{{$item->desc}}</td>
                     <td>
-                        <button class="btn btn-success">Detail</button>
-                        <button class="btn btn-danger">Delete</button>
+                        <a href="/assignments/{{$item->id}}"class="btn btn-success">View detail</a>
                     </td>
                 </tr>
                   @endforeach
@@ -42,12 +41,13 @@
                 </tbody>
             </table>
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        @foreach ($assignments as $item)
+        <!-- Assignment modal -->
+        <div class="modal fade" id="assignmentModal{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add new assignment</h5>
+                        <h5 class="modal-title" id="assignmentModal{{$item->id}}">Assignment's detail</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -55,10 +55,10 @@
                       <form>
                         <div class="form-group">
                           <label for="datepicker">Deadline:</label>  
-                          <input class="form-control" type="text" id="datepicker">
+                          <input class="form-control" type="text" id="datepicker" value="{{date('d-m-Y', strtotime($item->deadline))}}" readonly disabled>
                           <div class="mt-2">
                             <label for="description">Description</label>
-                            <textarea class="form-control" placeholder="" id="description"></textarea>
+                            <textarea class="form-control" placeholder="" id="description" readonly disabled>{{$item->desc}}</textarea>
                           </div>
                           <div class="mt-3">
                             <label for="formFile" class="form-label">File</label>
@@ -74,6 +74,8 @@
                 </div>
             </div>
         </div>
+        @endforeach
+
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="

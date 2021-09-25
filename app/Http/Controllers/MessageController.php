@@ -41,5 +41,6 @@ class MessageController extends Controller
             "content" => $request->content,
             "time_send" => Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString(),
         ]);
+        return redirect()->back();
     }
 }

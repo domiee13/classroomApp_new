@@ -35,6 +35,13 @@
             @if (Session::get('true'))
                 <p>{{Session::get('true')}}
             @endif
+            @if (Session::get('error'))
+            <div class="alert alert-danger mt-2 mx-2">
+                <ul>
+                    {{Session::get('error')}}
+                </ul>
+            </div>
+        @endif
         </div>
     </div>
 

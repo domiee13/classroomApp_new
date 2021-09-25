@@ -68,6 +68,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/assignments/add','App\Http\Controllers\AssignmentController@addAssignment' );
 
+    Route::get('/assignments/{id}', 'App\Http\Controllers\AssignmentController@getAssignmentDetail' );
+    Route::post('/assignments/{id}', 'App\Http\Controllers\AssignmentController@submitAssignment' );
+    Route::get('/assignments/{id}/get', 'App\Http\Controllers\AssignmentController@downloadAssignment' );
+    Route::get('/assignments/admin/{id}', 'App\Http\Controllers\AssignmentController@viewExercise' );    Route::get('/assignments/{id}/get', 'App\Http\Controllers\AssignmentController@downloadAssignment' );
+    Route::get('/assignments/admin/{id}/get', 'App\Http\Controllers\ExerciseController@downloadExercise' );
+
 });
 
 // Route::middleware(['auth', 'admin'])->group(function () {

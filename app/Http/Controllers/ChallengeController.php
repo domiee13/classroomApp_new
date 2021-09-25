@@ -18,13 +18,13 @@ class ChallengeController extends Controller
     }
 
     public function addChall(Request $request){
-        // dd($request->all());
         $request->validate([
             'file' => 'required|mimes:txt',
         ]);
         // dd($request->file->getClientOriginalName());
         $fileName = $request->file->getClientOriginalName();
-        $filePath = $request->file('file')->move('uploads', $fileName);
+        $filePath = $request->file('file')->move(Storage::disk('public')->getAdapter()->getPathPrefix(), $fileName);
+        // Storage::disk('public')->put($request->file);
         // dd($filePath);
         
         Challenge::create([
@@ -45,12 +45,15 @@ class ChallengeController extends Controller
 
     public function downloadChall($id){
         // dd(Storage::allFiles('uploads'));
+        // dd(Storage::disk('public')->allFiles());
         $chall = Challenge::find($id);
         $filePath = explode(".",$chall->filepath);
         // dd($filePath[1]);
         $fileDownloadName = "chall" . $chall->id ."." . $filePath[1];
-        return Storage::download($chall->filepath, $fileDownloadName);
+        return response()->download($chall->filepath, $fileDownloadName);
+        // return Storage::download($chall->filepath);
     }
+    
     public function playChall($id){
         $chall = Challenge::find($id);
         return view('challenges.playground', compact('chall', $chall));
@@ -60,10 +63,13 @@ class ChallengeController extends Controller
         // dd($id, $request->all());
         $filepath = Challenge::find($id)->filepath;
         $challName = explode(".", $filepath)[0];
-        $challName = explode("/", $challName)[1];
+        $challName = explode("\\", $challName)[6];
+        // dd(file_get_contents($filepath));
         if($request->answer == $challName){
-            $content = Storage::get($filepath);
+            $content = file_get_contents($filepath);
             return redirect()->back()->with('true', $content);
+        }else{
+            return redirect()->back()->with('error', "Wrong answer");
         }
     }
 }

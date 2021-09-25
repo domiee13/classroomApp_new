@@ -32,7 +32,7 @@
                     <td>{{date('d-m-Y', strtotime($item->deadline))}}</td>
                     <td>{{$item->desc}}</td>
                     <td>
-                        <button class="btn btn-success">Detail</button>
+                        <a href="/assignments/admin/{{$item->id}}"class="btn btn-success">Detail</a>
                         <button class="btn btn-danger">Delete</button>
                     </td>
                 </tr>

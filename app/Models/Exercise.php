@@ -5,14 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Assignment extends Model
+class Exercise extends Model
 {
     use HasFactory;
+    protected $table = 'exercises';
     public $timestamps = false;
     protected $fillable = [
         
-        'deadline',
-        'desc',
+        'assignment_id',
+        'student_name',
+        'time_send',
         'filepath',
     ];
+
 }
