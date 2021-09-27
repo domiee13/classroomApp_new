@@ -18,6 +18,7 @@ class CreateAssignmentsTable extends Migration
             $table->date('deadline');
             $table->string('desc');
             $table->string('filepath');
+            $table->string('filename');
         });
     }
 

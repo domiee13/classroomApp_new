@@ -20,6 +20,7 @@ class Exercises extends Migration
             $table->string('student_name');
             $table->timestamp('time_send');
             $table->string('filepath');
+            $table->string('filename');
         });
     }
 

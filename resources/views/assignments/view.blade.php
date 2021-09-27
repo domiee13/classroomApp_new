@@ -20,7 +20,7 @@
             
             <div class="row">
                 <p class="col-md-6">
-                  File: <a  href="/assignments/{{$assignment->id}}/get">{{explode("\\",$assignment->filepath)[6]}}</a>
+                  File: <a  href="/assignments/{{$assignment->id}}/get">{{end(explode("\\",$assignment->filepath))}}</a>
                   
                 </p>
                 
@@ -47,7 +47,7 @@
                 @foreach ($exercises as $item)
                 <tr>
                   <th scope="row">{{$item->time_send}}</th>
-                  <td><a  href="/assignments/admin/{{$item->id}}/get">{{explode("\\",$item->filepath)[6]}}</a></td>
+                  <td><a  href="/assignments/admin/{{$item->id}}/get">{{end(explode("\\",$assignment->filepath))}}</a></td>
                   <td>{{$item->student_name}}</td>
                   {{-- <td>
                       <a href="/assignments/admin/{{$item->id}}"class="btn btn-success">Detail</a>

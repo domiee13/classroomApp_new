@@ -36,7 +36,8 @@ class AssignmentController extends Controller
         Assignment::create([
             "deadline" => $deadline,
             "desc" => $request->desc,
-            "filepath" => $filePath
+            "filepath" => $filePath,
+            'filename' => $fileName,
         ]);
         return redirect('/assignments');
     }
@@ -76,6 +77,7 @@ class AssignmentController extends Controller
             'student_name' => $student,
             'time_send' => Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString(),
             'filepath' => $filePath,
+            'filename' => $fileName,
         ]);
        return redirect()->back();
     }
