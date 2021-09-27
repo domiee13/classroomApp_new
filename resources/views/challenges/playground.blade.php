@@ -33,8 +33,8 @@
                 </div>
             </div>
             @if (Session::get('true'))
-            <div class="row alert alert-success" role="alert">
-                <p>{{Session::get('true')}}</p>
+            <div class="row alert alert-success w-100" role="alert">
+                Correct answer: <p>{{Session::get('true')}}</p>
               </div>
             @endif
             @if (Session::get('error'))
