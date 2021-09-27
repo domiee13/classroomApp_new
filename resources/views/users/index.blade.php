@@ -91,7 +91,7 @@
 
                             <div class="modal fade" id="exampleModal{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel {{$user->id}}"
                                 aria-hidden="true">
-                                <input class="" type=" text" name="id_user" value="{{ $user->id }}">
+                                <input class="d-none" type=" text" name="id_user" value="{{ $user->id }}">
 
 
                                 <div class="modal-dialog">
