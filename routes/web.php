@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', 'App\Http\Controllers\UserController@profile');
     Route::post('/profile', 'App\Http\Controllers\UserController@editProfile');
     Route::get('/users/edit/{id}', 'App\Http\Controllers\UserController@getEditUser');
+    Route::post('/users/edit/{id}', 'App\Http\Controllers\UserController@postEditUser');
     Route::post('/users/delmsg/{id}', 'App\Http\Controllers\MessageController@deleteMsg');
     Route::post('/users/deluser/{id}','App\Http\Controllers\UserController@deleteUser' );
     Route::post('/users/editmsg/{id}','App\Http\Controllers\MessageController@editMsg' );

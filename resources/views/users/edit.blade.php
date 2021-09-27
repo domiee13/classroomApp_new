@@ -16,7 +16,7 @@
               </div>
               @endif
               <div class="card-body">
-                  <form method="POST" action="/profile">
+                  <form method="POST" action="/users/edit/{{$user->id}}">
                       @csrf
 
                       <div class="form-group row mt-2">

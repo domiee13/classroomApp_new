@@ -95,8 +95,23 @@ class UserController extends Controller
         $user = User::find($id);
         return view('users.edit',['user' => $user]);
     }
-    public function postEditUser(){
-        return view('users.edit');
+    public function postEditUser(Request $request){
+        $user = User::find($request->id);
+        if($request->password == $request->password_confirmation){
+            $user->update([
+                'name' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'password' => bcrypt($request->password),
+                'role' => $user->role
+            ]);
+            return redirect()->back();
+        }
+        else{
+            $url = '/users/edit/' . $user->id;
+            return redirect($url)->with('error', 'Invalid information');
+        }
     }
     public function deleteUser(Request $request){
         // dd($request->all());
