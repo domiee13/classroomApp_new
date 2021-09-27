@@ -63,7 +63,7 @@ class ChallengeController extends Controller
         // dd($id, $request->all());
         $filepath = Challenge::find($id)->filepath;
         $challName = explode(".", $filepath)[0];
-        $challName = explode("\\", $challName)[6];
+        $challName = explode("//", $challName)[8];
         // dd(file_get_contents($filepath));
         if($request->answer == $challName){
             $content = file_get_contents($filepath);

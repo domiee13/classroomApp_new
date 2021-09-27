@@ -33,7 +33,9 @@
                 </div>
             </div>
             @if (Session::get('true'))
-                <p>{{Session::get('true')}}
+            <div class="alert alert-success" role="alert">
+                <p>{{Session::get('true')}}</p>
+              </div>
             @endif
             @if (Session::get('error'))
             <div class="alert alert-danger mt-2 mx-2">
