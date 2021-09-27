@@ -16,6 +16,7 @@ class Exercise extends Model
         'student_name',
         'time_send',
         'filepath',
+        'filename',
     ];
 
 }

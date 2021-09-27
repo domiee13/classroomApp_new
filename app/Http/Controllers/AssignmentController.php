@@ -81,4 +81,11 @@ class AssignmentController extends Controller
         ]);
        return redirect()->back();
     }
+
+    public function deleteAssignment(Request $request){
+        // dd($request->all());
+        $assignment = Assignment::find($request->assignment_id);
+        $assignment->delete();
+        return redirect()->back();
+    }
 }

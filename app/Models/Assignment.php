@@ -14,5 +14,6 @@ class Assignment extends Model
         'deadline',
         'desc',
         'filepath',
+        'filename',
     ];
 }

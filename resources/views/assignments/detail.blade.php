@@ -19,7 +19,7 @@
         <div class="card-body">
             
             <div class="row">
-                <p class="col-md-6">File: <a  href="/assignments/{{$assignment->id}}/get">{{end(explode("\\",$item->filepath))}}</a></p>
+                <p class="col-md-6">File: <a  href="/assignments/{{$assignment->id}}/get">{{$assignment->filename}}</a></p>
                 <div class="col-md-6 text-danger">Due to: {{$assignment->deadline}}</div>
             </div>
             <div class="row">
@@ -49,7 +49,7 @@
               @foreach ($exercises as $item)
               <tr>
                 <th scope="row">{{$item->time_send}}</th>
-                <td><a  href="/assignments/admin/{{$item->id}}/get">{{end(explode("\\",$item->filepath))}}</a></td>
+                <td><a  href="/assignments/admin/{{$item->id}}/get">{{$item->filename}}</a></td>
                 <td>{{$item->student_name}}</td>
                 {{-- <td>
                     <a href="/assignments/admin/{{$item->id}}"class="btn btn-success">Detail</a>

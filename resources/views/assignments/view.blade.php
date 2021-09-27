@@ -20,18 +20,18 @@
             
             <div class="row">
                 <p class="col-md-6">
-                  File: <a  href="/assignments/{{$assignment->id}}/get">{{end(explode("\\",$assignment->filepath))}}</a>
+                  File: <a  href="/assignments/{{$assignment->id}}/get">{{$assignment->filename}}</a>
                   
                 </p>
                 
                 <div class="col-md-6 text-danger">Due to: {{$assignment->deadline}}</div>
             </div>
             <div class="row mb-2">
-              <div class="col-md-6"><button class="btn btn-warning">Change file</button>
-              </div>
+              {{-- <div class="col-md-6"><button class="btn btn-warning">Change file</button>
+              </div> --}}
               
             </div>
-            <div class="row">
+            <div class="row mb-3">
                 <h5 class="">Description:</h5>
                 <div>{{$assignment->desc}}</div>
             </div>
@@ -47,7 +47,7 @@
                 @foreach ($exercises as $item)
                 <tr>
                   <th scope="row">{{$item->time_send}}</th>
-                  <td><a  href="/assignments/admin/{{$item->id}}/get">{{end(explode("\\",$assignment->filepath))}}</a></td>
+                  <td><a  href="/assignments/admin/{{$item->id}}/get">{{$item->filename}}</a></td>
                   <td>{{$item->student_name}}</td>
                   {{-- <td>
                       <a href="/assignments/admin/{{$item->id}}"class="btn btn-success">Detail</a>

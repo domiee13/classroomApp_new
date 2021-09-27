@@ -71,7 +71,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/assignments/{id}', 'App\Http\Controllers\AssignmentController@getAssignmentDetail' );
     Route::post('/assignments/{id}', 'App\Http\Controllers\AssignmentController@submitAssignment' );
     Route::get('/assignments/{id}/get', 'App\Http\Controllers\AssignmentController@downloadAssignment' );
-    Route::get('/assignments/admin/{id}', 'App\Http\Controllers\AssignmentController@viewExercise' );    Route::get('/assignments/{id}/get', 'App\Http\Controllers\AssignmentController@downloadAssignment' );
+    Route::get('/assignments/admin/{id}', 'App\Http\Controllers\AssignmentController@viewExercise' );    
+    Route::post('/assignments/admin/del', 'App\Http\Controllers\AssignmentController@deleteAssignment' );    
+    Route::get('/assignments/{id}/get', 'App\Http\Controllers\AssignmentController@downloadAssignment' );
     Route::get('/assignments/admin/{id}/get', 'App\Http\Controllers\ExerciseController@downloadExercise' );
 
 });

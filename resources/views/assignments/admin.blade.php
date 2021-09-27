@@ -33,7 +33,7 @@
                     <td>{{$item->desc}}</td>
                     <td>
                         <a href="/assignments/admin/{{$item->id}}"class="btn btn-success">Detail</a>
-                        <button class="btn btn-danger">Delete</button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal{{$item->id}}">Delete</button>
                     </td>
                 </tr>
                   @endforeach
@@ -83,6 +83,30 @@
                 </div>
             </div>
         </div>
+        <!-- Delete confirm modal -->
+        @foreach($assignments as $item)
+    <form action="/assignments/admin/del" method="POST">
+      @csrf
+    <div class="modal fade" id="confirmModal{{$item->id}}" tabindex="-1" aria-labelledby="confirmModalLabel{{$item->id}}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+              <input class="d-none" type="text" value="{{$item->id}}" name="assignment_id">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmModalLabel{{$item->id}}">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </form>
+  @endforeach
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
