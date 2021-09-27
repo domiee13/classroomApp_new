@@ -48,7 +48,7 @@ Route::get('/messages', 'App\Http\Controllers\MessageController@index');
 
 Route::middleware(['auth'])->group(function () {
     
-    Route::get('/users', 'App\Http\Controllers\UserController@index')->name('users');
+    Route::get(Request::url() . '/users', 'App\Http\Controllers\UserController@index')->name('users');
     Route::get('/messages', 'App\Http\Controllers\MessageController@index');
     Route::get('/users/{user_id}','App\Http\Controllers\UserController@detailById' );
     Route::post('/users/{id}', 'App\Http\Controllers\MessageController@sendMsg');
