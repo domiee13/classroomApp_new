@@ -106,7 +106,7 @@ class UserController extends Controller
                 'password' => bcrypt($request->password),
                 'role' => $user->role
             ]);
-            return redirect()->back();
+            return redirect('/users');
         }
         else{
             $url = '/users/edit/' . $user->id;
