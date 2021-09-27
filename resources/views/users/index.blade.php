@@ -77,7 +77,7 @@
                                 {{-- Delete button with user account --}}
                                 @if ($user->role == 1)
                                     <button class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal{{$user->id}} ">Delete {{ $user->id }}</button>
+                                        data-bs-target="#exampleModal{{$user->id}} ">Delete</button>
                                 @endif
 
                             </td>
