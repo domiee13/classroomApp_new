@@ -72,12 +72,12 @@
                                 {{-- Check, only admin can edit --}}
                                 @if (Auth::user()->role == 0)
                                     <a href="/users/edit/{{ $user->id }}" class="btn btn-primary">Edit</a>
-                                @endif
 
                                 {{-- Delete button with user account --}}
                                 @if ($user->role == 1)
                                     <button class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal{{$user->id}} ">Delete</button>
+                                @endif
                                 @endif
 
                             </td>
