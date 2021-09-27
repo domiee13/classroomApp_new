@@ -68,7 +68,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="/users/{{ $user->id }}" class="btn btn-success">View details</a>
+                                <a href="home/users/{{ $user->id }}" class="btn btn-success">View details</a>
                                 {{-- Check, only admin can edit --}}
                                 @if (Auth::user()->role == 0)
                                     <a href="/users/edit/{{ $user->id }}" class="btn btn-primary">Edit</a>

@@ -152,7 +152,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/messages" class="nav-link text-white {{ Request::path() ==  'messages' ? 'active' : ''  }}">
+                    <a href="home/messages" class="nav-link text-white {{ Request::path() ==  'messages' ? 'active' : ''  }}">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#chat-quote-fill" />
                         </svg>
@@ -160,7 +160,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/assignments" class="nav-link text-white {{ Request::path() ==  'assignments' ? 'active' : ''  }}">
+                    <a href="home/assignments" class="nav-link text-white {{ Request::path() ==  'assignments' ? 'active' : ''  }}">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#table" />
                         </svg>
@@ -168,7 +168,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/challenges" class="nav-link text-white {{ Request::path() ==  'challenges' ? 'active' : ''  }}">
+                    <a href="home/challenges" class="nav-link text-white {{ Request::path() ==  'challenges' ? 'active' : ''  }}">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#grid" />
                         </svg>
