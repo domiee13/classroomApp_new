@@ -21,16 +21,20 @@ class ChallengeController extends Controller
         $request->validate([
             'file' => 'required|mimes:txt',
         ]);
-        // dd($request->file->getClientOriginalName());
+
+        $id = Challenge::all()->count() + 1;
+        $diretoryName = 'chall' . $id;
+        Storage::makeDirectory($diretoryName);
         $fileName = $request->file->getClientOriginalName();
-        $filePath = $request->file('file')->move(Storage::disk('public')->getAdapter()->getPathPrefix(), $fileName);
-        // Storage::disk('public')->put($request->file);
-        // dd($filePath);
+        $path = Storage::putFileAs($diretoryName, $request->file, $fileName);
+        // dd($path);
+       
         
         Challenge::create([
+            "id" => $id,
             "name" => $request->challengename,
             "hint" => $request->hint,
-            "filepath" => $filePath,
+            // "filepath" => $filePath,
         ]);
         // return return redirect()->back()->withErrors($validator)->withInput();
         return redirect('/challenges');
@@ -43,16 +47,16 @@ class ChallengeController extends Controller
         return redirect()->back();
     }
 
-    public function downloadChall($id){
-        // dd(Storage::allFiles('uploads'));
-        // dd(Storage::disk('public')->allFiles());
-        $chall = Challenge::find($id);
-        $filePath = explode(".",$chall->filepath);
-        // dd($filePath[1]);
-        $fileDownloadName = "chall" . $chall->id ."." . $filePath[1];
-        return response()->download($chall->filepath, $fileDownloadName);
-        // return Storage::download($chall->filepath);
-    }
+    // public function downloadChall($id){
+    //     // dd(Storage::allFiles('uploads'));
+    //     // dd(Storage::disk('public')->allFiles());
+    //     $chall = Challenge::find($id);
+    //     $filePath = explode(".",$chall->filepath);
+    //     // dd($filePath[1]);
+    //     $fileDownloadName = "chall" . $chall->id ."." . $filePath[1];
+    //     return response()->download($chall->filepath, $fileDownloadName);
+    //     // return Storage::download($chall->filepath);
+    // }
     
     public function playChall($id){
         $chall = Challenge::find($id);
@@ -61,12 +65,11 @@ class ChallengeController extends Controller
 
     public function submitAnswerChall($id, Request $request){
         // dd($id, $request->all());
-        $filepath = Challenge::find($id)->filepath;
-        $challName = explode(".", $filepath)[0];
-        $challName = explode("/", $challName)[8];
+        $filepath = "chall" . $request->id . "/";
         // dd(file_get_contents($filepath));
-        if($request->answer == $challName){
-            $content = file_get_contents($filepath);
+        // dd($filepath . $request->answer . ".txt");
+        if(Storage::exists($filepath . $request->answer . ".txt")){
+            $content = Storage::get($filepath . $request->answer . ".txt");
             return redirect()->back()->with('true', $content);
         }else{
             return redirect()->back()->with('error', "Wrong answer");
